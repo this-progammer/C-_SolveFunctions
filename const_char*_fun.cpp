@@ -20,6 +20,7 @@ void CharTemplate::SetName( const char* name ) {
     std::cout << t.m_Name << std::endl;
 }
 
+// just learned about trailing return types! pretty wierd and cool
 auto get_const_auto_char()-> const char*{
     return "Test1";
 }
