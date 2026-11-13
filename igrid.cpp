@@ -5,6 +5,7 @@ class IGrid {
     int m_col;
     int m_row;
 public:
+    
     inline IGrid& getGrid() {
         return *this;
     }
@@ -17,34 +18,39 @@ public:
         return m_row;
     }
 
-    constexpr auto Create()->auto*;
+    constexpr auto Create()->auto&;
     
 };
 
-template<int col, int row> constexpr auto IGrid<col, row>::Create()->auto* {
+
+template<int col, int row> constexpr auto IGrid<col, row>::Create()->auto& {
     auto& grid = this->getGrid();
         for( auto i = 0; i <= 0; i++ ){
-            grid.m_col = col; grid.getCol();
-            grid.m_row = row; grid.getRow();
+            grid.m_col = col; 
+            grid.getCol();
+            grid.m_row = row; 
+            grid.getRow();
         }
     const char* c = "|";
     const char* r = "_";
-        for( auto j = grid.m_col; j >= sizeof( col ); j++ ){
-            std::cout << c << "\t" << "\n";
+        for( auto j = grid.m_col; j >= sizeof( col ); j-- ){
+            std::cout << c << j << std::endl;
+            std::cout << "Grid Power : " << col << "x" << row << std::endl;
         }
-        for( auto k = grid.m_row; k >= sizeof( row ); k++ ){
-            std::cout << r << "\t" << "\n";
+        for( auto k = grid.m_row; k >= sizeof( row ); k-- ){
+            std::cout << r << k << std::endl;
+            std::cout << "Grid Power : " << col << "x" << row << std::endl;
         }
+  //  std::cout << "Grid Power : " << col << "x" << row << std::endl;
     return grid;
 }
 
 int main(){
-    int g_col = 1024;
-    int g_row = 1024;
+     const int g_col = 1024;
+     const int g_row = 1024;
 
-    IGrid grid<g_col, g_row>;
-
-    //grid.<g_col, g_row>Create();
+    IGrid<g_col, g_row> grid;
+    grid.Create();
     
     return 0;
 }
